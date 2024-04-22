@@ -7,22 +7,18 @@
       "destination": "wwwroot/lib/jquery/"
     },
     {
-      "provider": "cdnjs",
       "library": "bootstrap@5.3.3",
       "destination": "wwwroot/lib/bootstrap/"
     },
     {
-      "provider": "cdnjs",
       "library": "font-awesome@6.5.2",
       "destination": "wwwroot/lib/font-awesome/"
     },
     {
-      "provider": "cdnjs",
       "library": "jquery-validation-unobtrusive@4.0.0",
       "destination": "wwwroot/lib/jquery-validation-unobtrusive/"
     },
     {
-      "provider": "cdnjs",
       "library": "jquery-validate@1.20.0",
       "destination": "wwwroot/lib/jquery-validate/",
       "files": [
@@ -30,6 +26,10 @@
         "localization/messages_ru.js",
         "localization/messages_ru.min.js"
       ]
+    },
+    {
+      "library": "htmx@1.9.12",
+      "destination": "wwwroot/lib/htmx/"
     }
   ]
 }
