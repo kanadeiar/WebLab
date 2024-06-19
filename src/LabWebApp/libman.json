@@ -28,7 +28,8 @@
       ]
     },
     {
-      "library": "htmx@1.9.12",
+      "provider": "cdnjs",
+      "library": "htmx@2.0.0",
       "destination": "wwwroot/lib/htmx/"
     }
   ]

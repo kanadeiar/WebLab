@@ -2,7 +2,11 @@
     ViewData["Title"] = "Главная";
 }
 
-<div class="text-center">
+<div id="main" class="text-center">
     <h1 class="display-4">Опытное приложение</h1>
-
+    
+    <button hx-get="/contacts"
+            hx-target="#main">
+        Получить контакты
+    </button>
 </div>
