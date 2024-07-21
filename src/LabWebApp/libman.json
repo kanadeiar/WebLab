@@ -28,8 +28,11 @@
       ]
     },
     {
-      "provider": "cdnjs",
       "library": "htmx@2.0.0",
+      "destination": "wwwroot/lib/htmx/"
+    },
+    {
+      "library": "htmx@2.0.1",
       "destination": "wwwroot/lib/htmx/"
     }
   ]
