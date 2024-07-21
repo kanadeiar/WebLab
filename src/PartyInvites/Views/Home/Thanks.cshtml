@@ -1,0 +1,29 @@
+﻿@model GuestResponse
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Спасибо</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+</head>
+<body>
+<div class="text-center">
+    <div>
+        <h1>Спасибо, @Model?.Name!</h1>
+        @if (Model?.WillAttend == true) {
+            @:Это замечательно.
+            @:Бухло уже в холодильнике!
+        } else {
+            @:Плохо, что вы не сможете прийти,
+            @:но спасибо что предупредили.
+        }
+    </div>
+    Нажать <a asp-action="ListResponses">сюда</a> для просмотра кто еще прийдет.
+</div>
+</body>
+</html>
