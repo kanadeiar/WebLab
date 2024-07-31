@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Player>
+
+<p>Ваша готовность:</p>
+
+<button hx-get="@Url.Action("Ready", new { ViewBag.Name })"
+        hx-headers='{"ready": "@(ViewBag.IsReady != true)"}'
+        hx-target="#wait">
+    @(ViewBag.IsReady == true ? "Готов" : "Не готов")
+</button>
+
+<p>Готовность всех игроков:</p>
+
+<table hx-get="@Url.Action("Ready", new { ViewBag.Name })"
+       hx-target="#wait"
+       hx-trigger="every 3s">
+    <thead>
+        <tr><th>Имя</th><th>Готовность</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var each in Model)
+        {
+            <tr>
+                <td>@each.Name</td>
+                <td>@(each.IsReady ? "Готов" : "Еще не готов")</td>
+            </tr>
+        }
+    </tbody>
+</table>

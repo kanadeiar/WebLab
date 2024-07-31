@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LabWebApp", "src\LabWebApp\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LabWebAppTests", "tests\LabWebAppTests\LabWebAppTests.csproj", "{A0949F05-0C77-417D-A2AC-5C837BF143A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyInvites", "src\PartyInvites\PartyInvites.csproj", "{A2377079-0B63-4793-A5A0-A71314911104}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyInvites", "src\PartyInvites\PartyInvites.csproj", "{A2377079-0B63-4793-A5A0-A71314911104}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Developers", "src\Developers\Developers.csproj", "{2E12717C-43D8-4314-895D-76576A65B571}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,10 @@ Global
 		{A2377079-0B63-4793-A5A0-A71314911104}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2377079-0B63-4793-A5A0-A71314911104}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2377079-0B63-4793-A5A0-A71314911104}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E12717C-43D8-4314-895D-76576A65B571}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E12717C-43D8-4314-895D-76576A65B571}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E12717C-43D8-4314-895D-76576A65B571}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E12717C-43D8-4314-895D-76576A65B571}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +45,7 @@ Global
 		{26885218-6EF3-4C74-80D0-23CAF16056EF} = {2259147E-9B2B-4454-BAAC-482943D43C73}
 		{A0949F05-0C77-417D-A2AC-5C837BF143A9} = {4613D800-0B72-4295-B2BC-8CF60BA2796C}
 		{A2377079-0B63-4793-A5A0-A71314911104} = {2259147E-9B2B-4454-BAAC-482943D43C73}
+		{2E12717C-43D8-4314-895D-76576A65B571} = {2259147E-9B2B-4454-BAAC-482943D43C73}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E725826B-D9E5-460D-94BF-5C3134D6EF1B}

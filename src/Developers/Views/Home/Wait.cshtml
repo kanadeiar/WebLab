@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Player>
+@{
+    ViewBag.Title = "Ожидание игроков";
+}
+
+<div>
+    <h1>@ViewBag.Title</h1>
+    
+    <p>Необходимое количество игроков: 2</p>
+    
+    <p>Ваше имя: @ViewBag.Name</p>
+    
+    <div id="wait">
+        
+        <partial name="Partials/WaitPartial" model="Model"/>
+
+    </div>
+
+</div>
