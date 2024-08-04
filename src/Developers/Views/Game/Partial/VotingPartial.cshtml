@@ -1,0 +1,47 @@
+﻿@model Developers.Models.Voting.VotingWebModel
+
+<div class="form-group mt-2">
+    <h6 class="bg-success text-white p-2">Открытое голосование за определение шпиона</h6>
+
+    <table class="table table-bordered table-striped table-sm">
+        <thead>
+        <tr>
+            <th>Игрок</th>
+            @foreach (var each in Model.Players)
+            {
+                <th>@each.Name</th>
+            }
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="align-middle">
+            <th scope="row">Кто шпион?</th>
+            @foreach (var each in Model.Players)
+            {
+                if (Model.Id == each.Id)
+                {
+                    <td>
+                        <select asp-for="SelectId" asp-items="Model.SelectPlayers" class="form-select"
+                                hx-get="@Url.Action("Vote", new { Model.Id })"
+                                hx-target="#voting">
+                            <option value="0">Сомневаюсь</option>
+                        </select>
+                    </td>
+                }
+                else
+                {
+                    <td>@each.Vote</td>
+                }
+            }
+        </tr>
+        </tbody>
+    </table>
+    
+    @if (Model.IsMayEnd)
+    {
+        <button class="btn btn-primary"
+            hx-post="@Url.Action("GameEnd")">
+            Вынести приговор шпиону @Model.Candidate 
+        </button>
+    }
+</div>
