@@ -32,7 +32,8 @@
                         @if (each.Id != ViewBag.Id)
                         {
                             <button class="btn btn-danger btn-sm"
-                                hx-get="@Url.Action("Kick", new { each.Id })">
+                                    hx-get="@Url.Action("Kick", new { each.Id })"
+                                    hx-swap="outerHTML">
                                 Выгнать
                             </button>
                         }
