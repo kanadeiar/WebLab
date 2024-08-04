@@ -8,15 +8,16 @@ public class EndController : Controller
 {
     public IActionResult Index(int id)
     {
-        if (GameController.Code != GameCode.GameEnd)
-        {
-            return NoContent();
-        }
-
         var player = PlayersRepository.Get(id);
+        if (Game.Code != GameCode.GameEnd || player == null)
+        {
+            return NotFound();
+        }
+        PlayersRepository.Remove(id);
+
         ViewBag.Id = id;
-        ViewBag.Spy = PlayersRepository.Players.FirstOrDefault(x => x.Role == RoleCode.Spy).Name;
-        ViewBag.Honests = PlayersRepository.Players.Where(x => x.Role == RoleCode.Honest).Select(x => x.Name).ToArray();
+        ViewBag.Spy = Game.Spy;
+        ViewBag.Honests = Game.Honests;
 
         if (GameController.WiningTeam == RoleCode.Honest)
         {

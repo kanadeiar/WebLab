@@ -35,7 +35,6 @@ public class GameController : Controller
     };
 
     public static RoleCode WiningTeam;
-    public static GameCode Code = GameCode.Default;
 
     private static string _selectedLocation;
     private static string _firstName;
@@ -44,7 +43,7 @@ public class GameController : Controller
     
     public IActionResult Index(int id)
     {
-        if (Code == GameCode.Default)
+        if (Game.Code == GameCode.Default)
         {
             var players = PlayersRepository.Players.ToArray();
             foreach (var each in players)
@@ -62,7 +61,7 @@ public class GameController : Controller
             var firstNum = _random.Next(players.Length);
             _firstName = players[firstNum].Name;
 
-            Code = GameCode.GameStart;
+            Game.Code = GameCode.GameStart;
         }
 
         var player = PlayersRepository.Get(id);
@@ -124,7 +123,7 @@ public class GameController : Controller
             model.Candidate = players.FirstOrDefault(x => x.Id == candidate.Key)?.Name;
         }
 
-        if (Code == GameCode.GameEnd)
+        if (Game.Code == GameCode.GameEnd)
         {
             Response.Headers.Add("HX-Redirect", Url.Action("Index", "End", new { id }));
         }
@@ -144,7 +143,7 @@ public class GameController : Controller
     [HttpPost]
     public IActionResult GameEnd()
     {
-        if (Code == GameCode.GameStart)
+        if (Game.Code == GameCode.GameStart)
         {
             var players = PlayersRepository.Players;
             var votes = players.ToDictionary(x => x, x => players.Count(p => p.PlayerIdVote == x.Id));
@@ -154,7 +153,10 @@ public class GameController : Controller
                 WiningTeam = RoleCode.Spy;
             }
 
-            Code = GameCode.GameEnd;
+            Game.Spy = PlayersRepository.Players.FirstOrDefault(x => x.Role == RoleCode.Spy)?.Name;
+            Game.Honests = PlayersRepository.Players.Where(x => x.Role == RoleCode.Honest).Select(x => x.Name).ToArray();
+
+            Game.Code = GameCode.GameEnd;
 
             PlayersRepository.Notify();
         }

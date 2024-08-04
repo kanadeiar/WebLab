@@ -40,7 +40,15 @@ public class HomeController : Controller
         var players = PlayersRepository.Players;
         var player = PlayersRepository.Get(id);
 
-        if (player is null || player.Notify == false) return NoContent();
+        if (player is null)
+        {
+            Response.Headers.Add("HX-Redirect", Url.Action("Index", "Home"));
+            return NoContent();
+        }
+        if (player.Notify == false)
+        {
+            return NoContent();
+        }
         player.Notify = false;
 
         ViewBag.Id = id;
@@ -66,7 +74,7 @@ public class HomeController : Controller
         player.Name = name;
         PlayersRepository.Notify();
     }
-
+    
     public IActionResult Ready(int id, bool isReady)
     {
         var player = PlayersRepository.Get(id);
@@ -81,5 +89,10 @@ public class HomeController : Controller
         PlayersRepository.Notify();
         
         return Wait(id);
+    }
+
+    public void Kick(int id)
+    {
+        PlayersRepository.Remove(id);
     }
 }
