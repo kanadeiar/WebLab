@@ -1,4 +1,6 @@
-namespace LabWebAppTests;
+using FluentAssertions;
+
+namespace ResistanceTests;
 
 public class UnitTest1
 {

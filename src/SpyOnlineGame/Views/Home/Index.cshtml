@@ -1,0 +1,25 @@
+﻿@model Player
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Главная - Онлайн игра "Шпион"</title>
+</head>
+<body>
+    <h1>Шпион</h1>
+    <p>Онлайн версия настольной игры "Шпион"</p>
+    <a asp-action="Rules">Правила игры</a>
+    <form asp-action="Login" method="post">
+        <div>
+            <label asp-for="Name">Ваше имя:</label>
+            <input asp-for="Name" />
+        </div>
+        <input type="submit" class="btn btn-primary mt-3" />
+    </form>
+</body>
+</html>
+

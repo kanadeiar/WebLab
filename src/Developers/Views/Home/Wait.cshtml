@@ -17,11 +17,10 @@
 <div class="m-2">
     <div class="form-group">
         <label class="form-label">Ваше имя:</label>
-
-        <input type="text" name="name" class="form-control"
-               hx-get="@Url.Action("Name", new { ViewBag.Id })"
-               hx-trigger="keyup changed delay:500ms"
-               value="@ViewBag.Name">
+        
+        <input type="text" name="name" class="form-control" 
+               hx-get hx-action="Name" hx-route-id="@ViewBag.Id" hx-trigger="keyup changed dalay:500ms"
+               value="@ViewBag.Name"/>
     </div>
 
     <div id="wait" hx-get="@Url.Action("Wait", new { ViewBag.Id })"

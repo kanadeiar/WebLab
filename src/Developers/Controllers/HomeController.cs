@@ -1,5 +1,6 @@
 using Developers.Data;
 using Developers.Models;
+using Htmx;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Developers.Controllers;
@@ -42,7 +43,7 @@ public class HomeController : Controller
 
         if (player is null)
         {
-            Response.Headers.Add("HX-Redirect", Url.Action("Index", "Home"));
+            Response.Htmx(x => x.Redirect(Url.Action("Index")));
             return NoContent();
         }
         if (player.Notify == false)
@@ -55,11 +56,11 @@ public class HomeController : Controller
         ViewBag.Name = player.Name;
         ViewBag.IsReady = player.IsReady;
         
-        if (Request.Headers.ContainsKey("HX-Request"))
+        if (Request.IsHtmx())
         {
             if (isGame)
             {
-                Response.Headers.Add("HX-Redirect", Url.Action("Index", "Game", new { id }));
+                Response.Htmx(x => x.Redirect(Url.Action("Index", "Game", new { id })));
             }
 
             return PartialView("Partial/WaitPartial", players);
