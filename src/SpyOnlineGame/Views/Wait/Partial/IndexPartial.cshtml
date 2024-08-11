@@ -1,0 +1,6 @@
+﻿@model IEnumerable<Player>
+
+@foreach (var each in Model)
+{
+    <p>@each.Id - @each.Name</p>
+}
