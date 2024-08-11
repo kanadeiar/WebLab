@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Player>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Ожидание - Онлайн игра "Шпион"</title>
+</head>
+<body>
+    <h4>Ожидание</h4>
+    <p>
+        Ваше имя:
+        @ViewBag.Name
+    </p>
+    <p>Все зарегистрированные игроки:</p>
+    @foreach (var each in Model)
+    {
+        <p>@each.Id - @each.Name</p>
+    }
+</body>
+</html>
