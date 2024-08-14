@@ -1,6 +1,6 @@
-﻿@model IEnumerable<Player>
+﻿@model WaitWebModel
 
-@foreach (var each in Model)
+@foreach (var each in Model.All)
 {
     <p>@each.Id - @each.Name</p>
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Player>
+﻿@model WaitWebModel
 @{
     Layout = null;
 }
@@ -14,11 +14,11 @@
     <h4>Ожидание</h4>
     <p>
         Ваше имя:
-        @ViewBag.Name
+        @Model.Current.Name
     </p>
 
     <p>Все зарегистрированные игроки:</p>
-    <div id="wait" hx-get="@Url.Action("WaitPartial", new { ViewBag.Id })"
+    <div id="wait" hx-get="@Url.Action("Index", new { Model.Id })"
          hx-trigger="every 1s">
         <partial name="Partial/WaitPartial" model="Model"/>
     </div>

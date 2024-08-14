@@ -1,6 +1,5 @@
-﻿using Htmx;
-using Microsoft.AspNetCore.Mvc;
-using SpyOnlineGame.Data;
+﻿using Microsoft.AspNetCore.Mvc;
+using SpyOnlineGame.Web.Hypermedia;
 
 namespace SpyOnlineGame.Controllers;
 
@@ -8,29 +7,15 @@ public class WaitController : Controller
 {
     public IActionResult Index(int id)
     {
-        var models = PlayersRepository.All.ToArray();
-        var player = PlayersRepository.Get(id);
-        if (player is null) return RedirectToAction("Index", "Home");
-        
-        ViewBag.Id = id;
-        ViewBag.Name = player.Name ?? string.Empty;
+        var hypermedia = new WaitHypermedia(Request, id);
 
-        return View(models);
-    }
+        if (hypermedia.IsNotFound) return NotFound();
 
-    public IActionResult WaitPartial(int id)
-    {
-        var models = PlayersRepository.All.ToArray();
-        var player = PlayersRepository.Get(id);
-        if (player is null)
+        if (hypermedia.IsHtmx)
         {
-            Response.Htmx(x => x.Redirect(Url.Action("Index", "Home")!));
-            return NoContent();
+            return PartialView("Partial/WaitPartial", hypermedia.Model());
         }
 
-        ViewBag.Id = id;
-        ViewBag.Name = player.Name ?? string.Empty;
-
-        return PartialView("Partial/WaitPartial", models);
+        return View(hypermedia.Model());
     }
 }
