@@ -18,9 +18,9 @@
     </p>
 
     <p>Все зарегистрированные игроки:</p>
-    <div id="wait" hx-get="@Url.Action("Index", new { ViewBag.Id })"
+    <div id="wait" hx-get="@Url.Action("WaitPartial", new { ViewBag.Id })"
          hx-trigger="every 1s">
-        <partial name="Partial/IndexPartial" model="Model"/>
+        <partial name="Partial/WaitPartial" model="Model"/>
     </div>
 </body>
 </html>

@@ -10,19 +10,27 @@ public class WaitController : Controller
     {
         var models = PlayersRepository.All.ToArray();
         var player = PlayersRepository.Get(id);
-        if (player is null)
-        {
-            return RedirectToAction("Index", "Home");
-        }
+        if (player is null) return RedirectToAction("Index", "Home");
         
         ViewBag.Id = id;
         ViewBag.Name = player.Name ?? string.Empty;
 
-        if (Request.IsHtmx())
+        return View(models);
+    }
+
+    public IActionResult WaitPartial(int id)
+    {
+        var models = PlayersRepository.All.ToArray();
+        var player = PlayersRepository.Get(id);
+        if (player is null)
         {
-            return PartialView("Partial/IndexPartial", models);
+            Response.Htmx(x => x.Redirect(Url.Action("Index", "Home")!));
+            return NoContent();
         }
 
-        return View(models);
+        ViewBag.Id = id;
+        ViewBag.Name = player.Name ?? string.Empty;
+
+        return PartialView("Partial/WaitPartial", models);
     }
 }
