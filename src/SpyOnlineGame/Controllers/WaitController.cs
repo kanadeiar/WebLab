@@ -10,6 +10,7 @@ public class WaitController : Controller
         var hypermedia = new WaitHypermedia(Request, id);
 
         if (hypermedia.IsNotFound) return NotFound();
+        if (hypermedia.HasOldData()) return NoContent();
 
         if (hypermedia.IsHtmx)
         {

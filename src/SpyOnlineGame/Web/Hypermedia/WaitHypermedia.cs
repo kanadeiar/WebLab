@@ -22,4 +22,12 @@ public class WaitHypermedia(HttpRequest request, int id)
             All = PlayersRepository.All,
         };
     }
+
+    public bool HasOldData()
+    {
+        if (_current?.Data.IsNeedUpdate != true) return true;
+
+        _current.Data.IsNeedUpdate = false;
+        return false;
+    }
 }
