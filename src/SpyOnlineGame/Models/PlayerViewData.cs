@@ -1,6 +1,6 @@
 ﻿namespace SpyOnlineGame.Models;
 
-public class PlayerData
+public class PlayerViewData
 {
     public bool IsNeedUpdate { get; set; }
 }

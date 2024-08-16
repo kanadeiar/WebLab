@@ -12,11 +12,8 @@ public class WaitController : Controller
         if (hypermedia.IsNotFound) return NotFound();
         if (hypermedia.HasOldData()) return NoContent();
 
-        if (hypermedia.IsHtmx)
-        {
-            return PartialView("Partial/WaitPartial", hypermedia.Model());
-        }
-
-        return View(hypermedia.Model());
+        return (hypermedia.IsHtmx) 
+            ? PartialView("Partial/WaitPartial", hypermedia.Model()) 
+            : View(hypermedia.Model());
     }
 }

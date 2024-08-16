@@ -1,5 +1,7 @@
 ﻿@model WaitWebModel
 
+<p>Все зарегистрированные игроки:</p>
+
 @foreach (var each in Model.All)
 {
     <p>@each.Id - @each.Name</p>

@@ -17,7 +17,6 @@
         @Model.Current.Name
     </p>
 
-    <p>Все зарегистрированные игроки:</p>
     <div id="wait" hx-get="@Url.Action("Index", new { Model.Id })"
          hx-trigger="every 1s">
         <partial name="Partial/WaitPartial" model="Model"/>

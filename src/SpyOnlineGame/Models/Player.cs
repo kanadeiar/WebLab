@@ -6,5 +6,5 @@ public class Player
 
     public string? Name { get; init; }
 
-    public PlayerData Data { get; init; } = new ();
+    public PlayerViewData Data { get; init; } = new ();
 }
