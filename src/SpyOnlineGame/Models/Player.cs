@@ -6,5 +6,7 @@ public class Player
 
     public string? Name { get; init; }
 
+    public bool IsReady { get; set; }
+
     public PlayerViewData Data { get; init; } = new ();
 }

@@ -30,4 +30,12 @@ public class WaitHypermedia(HttpRequest request, int id)
         _current.Data.IsNeedUpdate = false;
         return false;
     }
+
+    public void SwitchReady()
+    {
+        if (_current is null) return;
+
+        _current.IsReady = !_current.IsReady;
+        PlayersRepository.IsNeedAllUpdate();
+    }
 }

@@ -18,12 +18,12 @@ public static class PlayersRepository
     {
         player.Id = lastId++;
         _players.Add(player);
-        isNeedAllUpdate();
+        IsNeedAllUpdate();
 
         return player.Id;
     }
 
-    private static void isNeedAllUpdate()
+    public static void IsNeedAllUpdate()
     {
         foreach (var each in All) each.Data.IsNeedUpdate = true;
     }
