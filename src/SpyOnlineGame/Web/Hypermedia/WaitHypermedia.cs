@@ -13,6 +13,8 @@ public class WaitHypermedia(HttpRequest request, int id)
 
     public bool IsNotFound => _current is null;
 
+    public bool IsShowRules => _current?.Data.IsShowRules ?? false;
+
     public WaitWebModel Model()
     {
         return new WaitWebModel
@@ -45,5 +47,12 @@ public class WaitHypermedia(HttpRequest request, int id)
 
         _current.Name = name;
         PlayersRepository.IsNeedAllUpdate();
+    }
+
+    public void SwitchShowRules()
+    {
+        if (_current is null) return;
+
+        _current.Data.IsShowRules = !_current.Data.IsShowRules;
     }
 }

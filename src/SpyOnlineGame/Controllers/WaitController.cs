@@ -10,7 +10,7 @@ public class WaitController : Controller
         var hypermedia = new WaitHypermedia(Request, id);
 
         if (hypermedia.IsNotFound) return NotFound();
-        if (hypermedia.HasOldData()) return NoContent();
+        if (hypermedia.IsHtmx && hypermedia.HasOldData()) return NoContent();
 
         return (hypermedia.IsHtmx) 
             ? PartialView("Partial/WaitPartial", hypermedia.Model()) 
@@ -31,5 +31,22 @@ public class WaitController : Controller
         var hypermedia = new WaitHypermedia(Request, id);
 
         hypermedia.SetName(name);
+    }
+
+    public IActionResult ShowRules(int id)
+    {
+        var hypermedia = new WaitHypermedia(Request, id);
+
+        ViewBag.Id = id;
+        ViewBag.IsShow = hypermedia.IsShowRules;
+        return PartialView("Partial/ShowRulesPartial");
+    }
+
+    public IActionResult SwitchShowRules(int id)
+    {
+        var hypermedia = new WaitHypermedia(Request, id);
+
+        hypermedia.SwitchShowRules();
+        return ShowRules(id);
     }
 }

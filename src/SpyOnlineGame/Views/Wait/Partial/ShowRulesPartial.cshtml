@@ -1,0 +1,10 @@
+﻿<button hx-get="@Url.Action("SwitchShowRules", new { ViewBag.Id })"
+        hx-target="#rules">
+    Правила
+</button>
+
+@if (ViewBag.IsShow)
+{
+    <partial name="Partial/RulesPartial"/>
+}
+

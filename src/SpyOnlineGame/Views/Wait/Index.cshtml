@@ -26,5 +26,10 @@
          hx-trigger="every 1s">
         <partial name="Partial/WaitPartial" model="Model" />
     </div>
+
+    <div id="rules"
+         hx-get="@Url.Action("ShowRules", new { Model.Id })"
+         hx-trigger="load">
+    </div>
 </body>
 </html>
