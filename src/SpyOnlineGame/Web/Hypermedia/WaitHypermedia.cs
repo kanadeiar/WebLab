@@ -38,4 +38,12 @@ public class WaitHypermedia(HttpRequest request, int id)
         _current.IsReady = !_current.IsReady;
         PlayersRepository.IsNeedAllUpdate();
     }
+
+    public void SetName(string name)
+    {
+        if (_current is null || _current.Name == name) return;
+
+        _current.Name = name;
+        PlayersRepository.IsNeedAllUpdate();
+    }
 }

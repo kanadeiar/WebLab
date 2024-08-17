@@ -12,14 +12,19 @@
 </head>
 <body>
     <h4>Ожидание</h4>
-    <p>
-        Ваше имя:
-        @Model.Current.Name
-    </p>
+
+    <div class="form-group">
+        <label class="form-label">Ваше имя:</label>
+
+        <input type="text" name="name" class="form-control"
+               hx-get="@Url.Action("SetName", new { Model.Id })"
+               hx-trigger="keyup changed dalay:500ms"
+               value="@Model.Current.Name" />
+    </div>
 
     <div id="wait" hx-get="@Url.Action("Index", new { Model.Id })"
          hx-trigger="every 1s">
-        <partial name="Partial/WaitPartial" model="Model"/>
+        <partial name="Partial/WaitPartial" model="Model" />
     </div>
 </body>
 </html>

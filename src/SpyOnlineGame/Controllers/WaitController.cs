@@ -25,4 +25,11 @@ public class WaitController : Controller
 
         return Index(id);
     }
+
+    public void SetName(int id, string name)
+    {
+        var hypermedia = new WaitHypermedia(Request, id);
+
+        hypermedia.SetName(name);
+    }
 }
