@@ -49,4 +49,12 @@ public class WaitController : Controller
         hypermedia.SwitchShowRules();
         return ShowRules(id);
     }
+
+    public IActionResult Logout(int id)
+    {
+        var hypermedia = new WaitHypermedia(Request, id);
+        hypermedia.Logout();
+        
+        return RedirectToAction("Index", "Home");
+    }
 }

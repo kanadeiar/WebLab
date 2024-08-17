@@ -23,6 +23,15 @@ public static class PlayersRepository
         return player.Id;
     }
 
+    public static void Remove(int id)
+    {
+        if (All.FirstOrDefault(p => p.Id == id) is { } removing)
+        {
+            _players.Remove(removing);
+            IsNeedAllUpdate();
+        }
+    }
+
     public static void IsNeedAllUpdate()
     {
         foreach (var each in All) each.Data.IsNeedUpdate = true;

@@ -55,4 +55,9 @@ public class WaitHypermedia(HttpRequest request, int id)
 
         _current.Data.IsShowRules = !_current.Data.IsShowRules;
     }
+
+    public void Logout()
+    {
+        PlayersRepository.Remove(id);
+    }
 }
