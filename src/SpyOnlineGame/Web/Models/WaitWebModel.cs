@@ -8,5 +8,9 @@ public class WaitWebModel
 
     public required Player Current { get; init; }
 
-    public IEnumerable<Player> All { get; init; } = Array.Empty<Player>();
+    public IEnumerable<Player> PlayPlayers { get; init; } = Array.Empty<Player>();
+
+    public IEnumerable<Player> WaitPlayers { get; init; } = Array.Empty<Player>();
+
+    public bool IsMayBeStart { get; init; }
 }

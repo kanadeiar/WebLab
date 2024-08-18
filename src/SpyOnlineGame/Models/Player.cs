@@ -8,5 +8,7 @@ public class Player
 
     public bool IsReady { get; set; }
 
+    public bool IsPlay { get; set; }
+
     public PlayerViewData Data { get; init; } = new ();
 }
