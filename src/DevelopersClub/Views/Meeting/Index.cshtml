@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Developer>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Согласование - Клуб программистов</title>
+    <script src="~/lib/htmx/htmx.js"></script>
+</head>
+<body>
+    <h4>Согласование</h4>
+    <p>Согласование темы следующего совещания</p>
+    <p>
+        Ваше имя: <strong>@ViewBag.Name</strong>
+    </p>
+    <div id="wait" hx-get hx-action="MeetingPartial"
+         hx-route-id="@ViewBag.Id"
+         hx-trigger="every 1s">
+        <partial name="Partial/MeetingPartial" model="Model" />
+    </div>
+</body>
+</html>
+
