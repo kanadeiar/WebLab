@@ -1,0 +1,8 @@
+﻿@model IEnumerable<Member>
+
+<p>Все зарегистрированные участники клуба:</p>
+@foreach (var each in Model)
+{
+    <p>@each.Id - <strong>@each.Name</strong></p>
+}
+

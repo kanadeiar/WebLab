@@ -1,4 +1,5 @@
 ﻿using DevelopersClub.Data;
+using DevelopersClub.Models;
 using DevelopersClub.Web.Models;
 using Htmx;
 using Microsoft.AspNetCore.Mvc;
@@ -18,6 +19,7 @@ public class MeetingController : Controller
             Id = id,
             Current = current,
             All = all,
+            Selected = current.Subject,
         };
 
         if (Request.IsHtmx())
@@ -26,5 +28,14 @@ public class MeetingController : Controller
         }
         
         return View(model);
+    }
+
+    public IActionResult Select(int id, SubjectCode? selected)
+    {
+        var current = DevelopersRepository.GetById(id);
+        if (current is null) return NoContent();
+        current.Subject = selected;
+
+        return Index(id);
     }
 }

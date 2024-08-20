@@ -5,7 +5,7 @@ namespace DevelopersClub.Data;
 public static class DevelopersRepository
 {
     private static List<Developer> _developers = new();
-    private static int lastId = 1;
+    private static int _lastId = 1;
     
     public static IEnumerable<Developer> All => _developers;
     
@@ -16,7 +16,7 @@ public static class DevelopersRepository
     
     public static int Add(Developer player)
     {
-        player.Id = lastId++;
+        player.Id = _lastId++;
         _developers.Add(player);
 
 

@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Member>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Страница клуба - Клуб программистов</title>
+</head>
+<body>
+    <h4>Страница клуба программистов</h4>
+    <p>Согласование темы следующего совещания.</p>
+    <p>
+        Ваше имя: <strong>@ViewBag.Name</strong>
+    </p>
+    <div id="wait" hx-get hx-action="ClubPartial"
+         hx-route-id="@ViewBag.Id"
+         hx-trigger="every 1s">
+        <partial name="Partial/ClubPartial" model="Model"/>
+    </div>
+</body>
+</html>
+

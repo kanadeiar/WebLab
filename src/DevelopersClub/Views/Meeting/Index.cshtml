@@ -16,6 +16,17 @@
     <p>
         Ваше имя: <strong>@Model.Current.Name</strong>
     </p>
+    <div>
+        <p>Интересующая вас тема:</p>
+        <select asp-for="Selected" 
+                asp-items="Model.Available"
+                hx-get hx-action="Select"
+                hx-route-id="@Model.Id"
+                hx-target="#wait">
+            <option value="">Не выбрано</option>
+        </select>
+    </div>
+
     <div id="wait" hx-get hx-action="Index"
          hx-route-id="@Model.Id"
          hx-trigger="every 1s">
