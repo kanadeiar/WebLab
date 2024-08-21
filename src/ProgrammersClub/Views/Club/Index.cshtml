@@ -16,10 +16,20 @@
     <p>
         Ваше имя: <strong>@Model.Current.Name</strong>
     </p>
+    <div>
+        <p>Интересующая вас тема:</p>
+        <select asp-for="Selected"
+                asp-items="Model.Available"
+                hx-get hx-action="Select"
+                hx-route-id="@Model.Id"
+                hx-target="#club">
+            <option value="">Не выбрано</option>
+        </select>
+    </div>
     <div id="club" hx-get hx-action="Index"
          hx-route-id="@Model.Id"
          hx-trigger="every 1s">
-        <partial name="Partial/ClubPartial" model="Model"/>
+        <partial name="Partial/ClubPartial" model="Model" />
     </div>
 </body>
 </html>
