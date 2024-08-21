@@ -14,6 +14,8 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult Registration(Member member)
     {
+        if (!ModelState.IsValid) return View("Index", member);
+
         var id = MembersRepository.Add(member);
         return RedirectToAction("Index", "Club", new { id });
     }
