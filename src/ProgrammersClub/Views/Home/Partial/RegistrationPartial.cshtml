@@ -1,0 +1,15 @@
+﻿@model RegistrationWebModel
+
+<form id="registration" asp-action="Registration" method="post">
+    <h4>Регистрация нового участника клуба</h4>
+    <div asp-validation-summary="All"></div>
+    <div>
+        <label asp-for="Name">Ваше имя:</label>
+        <input asp-for="Name" 
+               hx-post hx-action="Registration"
+               hx-trigger="change, keyup delay:500ms changed"
+               hx-target="#registration"
+               hx-swap="outerHTML"/>
+    </div><br />
+    <input type="submit" value="Зарегистрироваться" />
+</form>

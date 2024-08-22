@@ -1,3 +1,4 @@
+using Htmx;
 using Microsoft.AspNetCore.Mvc;
 using ProgrammersClub.Data;
 using ProgrammersClub.Web.Models;
@@ -14,6 +15,9 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult Registration(RegistrationWebModel model)
     {
+        model.Validate(ModelState);
+        if (Request.IsHtmx()) 
+            return PartialView("Partial/RegistrationPartial", model);
         if (!ModelState.IsValid) return View("Index", model);
 
         var member = model.Map();
