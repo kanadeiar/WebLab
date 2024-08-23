@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using ProgrammersClub.Data;
 using ProgrammersClub.Models;
@@ -7,6 +8,7 @@ namespace ProgrammersClub.Web.Models;
 
 public class RegistrationWebModel
 {
+    [DisplayName("Имя")]
     [Required(ErrorMessage = "Пожалуйста, введите ваше имя")]
     [StringLength(30, ErrorMessage = "Имя должно быть короче 30 символов")]
     public string? Name { get; set; }
