@@ -1,6 +1,5 @@
-using Htmx;
 using Microsoft.AspNetCore.Mvc;
-using ProgrammersClub.Data;
+using ProgrammersClub.Web.Hypermedia;
 using ProgrammersClub.Web.Models;
 
 namespace ProgrammersClub.Controllers;
@@ -15,14 +14,14 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult Registration(RegistrationWebModel model)
     {
-        model.Validate(ModelState);
-        if (Request.IsHtmx()) 
-            return PartialView("Partial/RegistrationPartial", model);
-        if (!ModelState.IsValid) return View("Index", model);
+        var hypermedia = new RegistrationHypermedia(Request, ModelState, model);
 
-        var member = model.Map();
-        var id = MembersRepository.Add(member);
-        return RedirectToAction("Index", "Club", new { id });
+        if (hypermedia.IsHtmx) return PartialView("Partial/RegistrationPartial", model);
+        if (hypermedia.IsInvalid) return View("Index", model);
+
+        hypermedia.RegisterNewMember();
+        
+        return RedirectToAction("Index", "Club", new { hypermedia.Id });
     }
 
     public IActionResult Rules()

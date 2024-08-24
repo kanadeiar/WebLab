@@ -1,8 +1,6 @@
-﻿using Htmx;
-using Microsoft.AspNetCore.Mvc;
-using ProgrammersClub.Data;
+﻿using Microsoft.AspNetCore.Mvc;
 using ProgrammersClub.Models;
-using ProgrammersClub.Web.Models;
+using ProgrammersClub.Web.Hypermedia;
 
 namespace ProgrammersClub.Controllers;
 
@@ -10,30 +8,22 @@ public class ClubController : Controller
 {
     public IActionResult Index(int id)
     {
-        var all = MembersRepository.All.ToArray();
-        var current = MembersRepository.GetById(id);
-        if (current is null) return NotFound();
+        var hypermedia = new ClubHypermedia(Request, id);
+        if (hypermedia.IsNotFound) return NotFound();
 
-        var model = new ClubWebModel
+        if (hypermedia.IsHtmx)
         {
-            Id = id,
-            Current = current,
-            All = all,
-            Selected = current.Subject,
-        };
-
-        if (Request.IsHtmx())
-        {
-            return PartialView("Partial/ClubPartial", model);
+            return PartialView("Partial/ClubPartial", hypermedia.Model());
         }
-        return View(model);
+        return View(hypermedia.Model());
     }
 
     public IActionResult Select(int id, SubjectCode? selected)
     {
-        var current = MembersRepository.GetById(id);
-        if (current is null) return NoContent();
-        current.Subject = selected;
-        return Index(id);
+        var hypermedia = new ClubHypermedia(Request, id);
+        hypermedia.SelectSubject(selected);
+
+        if (hypermedia.IsNotFound) return NoContent();
+        return Index(hypermedia.Id);
     }
 }
