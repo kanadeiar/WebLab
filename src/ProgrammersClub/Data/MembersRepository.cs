@@ -18,6 +18,15 @@ public static class MembersRepository
     {
         player.Id = _lastId++;
         _members.Add(player);
+        UpNeedUpdate();
         return player.Id;
+    }
+
+    public static void UpNeedUpdate()
+    {
+        foreach (var each in All)
+        {
+            each.IsNeedUpdate = true;
+        }
     }
 }

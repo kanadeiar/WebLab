@@ -41,6 +41,15 @@ public class ClubHypermedia
         if (_current != null)
         {
             _current.Subject = select;
+            MembersRepository.UpNeedUpdate();
         }
+    }
+
+    public bool HasOldData()
+    {
+        if (_current?.IsNeedUpdate == false) return true;
+
+        _current!.IsNeedUpdate = false;
+        return false;
     }
 }

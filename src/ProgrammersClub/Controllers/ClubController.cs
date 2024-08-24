@@ -13,6 +13,8 @@ public class ClubController : Controller
 
         if (hypermedia.IsHtmx)
         {
+            if (hypermedia.HasOldData()) return NoContent();
+
             return PartialView("Partial/ClubPartial", hypermedia.Model());
         }
         return View(hypermedia.Model());
