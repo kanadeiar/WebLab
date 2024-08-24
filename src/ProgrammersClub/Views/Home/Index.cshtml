@@ -3,11 +3,16 @@
     ViewBag.Title = "Главная";
 }
 
-<h1>Клуб программистов</h1>
-<a asp-action="Rules">Правила</a>
-<p>
-    Вы получили приглашение в клуб программистов.
-    Добро пожаловать в наш уютный клуб!
-</p>
+<div class="my-4 p-5 bg-secondary text-white rounded">
+    <h1 class="text-center">Клуб программистов</h1>
+    <p>
+        Вы получили приглашение в клуб программистов.
+        Добро пожаловать в наш уютный клуб!
+    </p>
+    <a asp-action="Rules" class="btn btn-dark">Правила</a>
+</div>
 
-<partial name="Partial/RegistrationPartial" model="Model"/>
+<div class="p-2 bg-light border rounded">
+    <partial name="Partial/RegistrationPartial" model="Model"/>
+</div>
+

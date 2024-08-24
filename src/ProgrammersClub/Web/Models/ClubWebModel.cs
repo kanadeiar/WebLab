@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using System.ComponentModel;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using ProgrammersClub.Models;
 
 namespace ProgrammersClub.Web.Models;
@@ -11,5 +12,6 @@ public class ClubWebModel
         Array.Empty<Member>();
     public SelectList Available { get; init; } =
         SubjectCodeExtensions.Available();
+    [DisplayName("Интересующая вас тема:")]
     public SubjectCode? Selected { get; init; }
 }
