@@ -38,11 +38,18 @@ public class ClubHypermedia
 
     public void SelectSubject(SubjectCode? select)
     {
-        if (_current != null)
-        {
-            _current.Subject = select;
-            MembersRepository.UpNeedUpdate();
-        }
+        if (_current == null) return;
+
+        _current.Subject = select;
+        MembersRepository.UpNeedUpdate();
+    }
+
+    public void SwitchReady()
+    {
+        if (_current == null) return;
+
+        _current.IsReady = !_current.IsReady;
+        MembersRepository.UpNeedUpdate();
     }
 
     public bool HasOldData()

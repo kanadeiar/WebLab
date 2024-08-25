@@ -25,7 +25,14 @@ public class ClubController : Controller
         var hypermedia = new ClubHypermedia(Request, id);
         hypermedia.SelectSubject(selected);
 
-        if (hypermedia.IsNotFound) return NoContent();
         return Index(hypermedia.Id);
+    }
+
+    public IActionResult SwitchReady(int id)
+    {
+        var hypermedia = new ClubHypermedia(Request, id);
+        hypermedia.SwitchReady();
+
+        return PartialView("Partial/ReadyPartial", hypermedia.Model());
     }
 }
