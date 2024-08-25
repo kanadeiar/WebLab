@@ -6,7 +6,12 @@
 <h4>Страница клуба программистов</h4>
 <p>Согласование темы следующего совещания.</p>
 <div class="my-1">
-    <p>Ваше имя: <strong>@Model.Current.Name</strong></p>
+    <label>Ваше имя:</label>
+    <input type="text" name="name" class="form-control" 
+           hx-get hx-action="ChangeName" 
+           hx-route-id="@Model.Id"
+           hx-trigger="keyup delay:500ms changed"
+           value="@Model.Current.Name"/>
 </div>
 <div class="my-1">
     <label asp-for="Selected" class="form-label"></label><br/>

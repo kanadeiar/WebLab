@@ -44,6 +44,14 @@ public class ClubHypermedia
         MembersRepository.UpNeedUpdate();
     }
 
+    public void ChangeName(string name)
+    {
+        if (_current == null) return;
+
+        _current.Name = name;
+        MembersRepository.UpNeedUpdate();
+    }
+
     public void SwitchReady()
     {
         if (_current == null) return;

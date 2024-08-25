@@ -4,17 +4,13 @@
       hx-target="this" 
       hx-swap="outerHTML">
     <h5>Регистрация нового участника клуба</h5>
-    <div class="row">
-        <div class="col-md-6">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div>
-                <label asp-for="Name" class="form-label"></label>
-                <input asp-for="Name" class="form-control" 
-                       hx-post hx-action="Registration"
-                       hx-trigger="change, keyup delay:1s changed"/>
-                <span asp-validation-for="Name" class="text-danger fw-bold"></span>
-            </div>
-        </div>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div>
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" 
+               hx-post hx-action="Registration"
+               hx-trigger="change, keyup delay:1s changed"/>
+        <span asp-validation-for="Name" class="text-danger fw-bold"></span>
     </div>
     <input class="btn btn-dark my-2" type="submit" value="Зарегистрироваться" />
 </form>

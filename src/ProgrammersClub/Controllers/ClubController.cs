@@ -28,6 +28,12 @@ public class ClubController : Controller
         return Index(hypermedia.Id);
     }
 
+    public void ChangeName(int id, string name)
+    {
+        var hypermedia = new ClubHypermedia(Request, id);
+        hypermedia.ChangeName(name);
+    }
+
     public IActionResult SwitchReady(int id)
     {
         var hypermedia = new ClubHypermedia(Request, id);
