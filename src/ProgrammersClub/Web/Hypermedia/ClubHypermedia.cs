@@ -60,6 +60,11 @@ public class ClubHypermedia
         MembersRepository.UpNeedUpdate();
     }
 
+    public void Kick(int id)
+    {
+        MembersRepository.Remove(id);
+    }
+
     public bool HasOldData()
     {
         if (_current?.IsNeedUpdate == false) return true;

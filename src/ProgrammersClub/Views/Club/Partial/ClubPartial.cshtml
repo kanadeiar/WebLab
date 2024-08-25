@@ -3,17 +3,29 @@
 <p>Все зарегистрированные участники клуба:</p>
 <table class="table table-striped table-bordered">
     <thead>
-        <tr><th>Id</th><th>Имя</th><th>Интересует тема</th><th>Готовность</th></tr>
+        <tr><th>Id</th><th>Имя</th><th>Интересует тема</th><th>Готовность</th><th class="col-1"></th></tr>
     </thead>
     <tbody>
     @foreach (var each in Model.All)
     {
         <tr>
-            <th scope="row">@each.Id</th>
-            <td>@each.Name</td>
-            <td>@each.Subject.Description()</td>
-            <td class="text-white @(each.IsReady ? "bg-success" : "bg-danger")">
+            <th scope="row" class="align-middle">@each.Id</th>
+            <td class="align-middle">@each.Name</td>
+                <td class="align-middle">@each.Subject.Description()</td>
+            <td class="align-middle text-white @(each.IsReady ? "bg-success" : "bg-danger")">
                 @(each.IsReady ? "Готов" : "Не готов")
+            </td>
+            <td>
+                @if (each.Id != Model.Id)
+                {
+                    <button class="btn btn-warning"
+                            hx-get hx-action="Kick"
+                            hx-route-id="@Model.Id" 
+                            hx-route-memberId="@each.Id"
+                            hx-target="#club">
+                        Выгнать
+                    </button>
+                }
             </td>
         </tr>
     }

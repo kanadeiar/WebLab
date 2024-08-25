@@ -22,6 +22,14 @@ public static class MembersRepository
         return player.Id;
     }
 
+    public static void Remove(int id)
+    {
+        if (GetById(id) is not { } deleted) return;
+
+        _members.Remove(deleted);
+        UpNeedUpdate();
+    }
+
     public static void UpNeedUpdate()
     {
         foreach (var each in All)
