@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevelopersClub", "src\Devel
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgrammersClub", "src\ProgrammersClub\ProgrammersClub.csproj", "{DCBE84E6-CD77-40D6-80A8-E12BFCAD4BAF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpyOnlineGame", "src\SpyOnlineGame\SpyOnlineGame.csproj", "{7EDB2D28-5A28-43DB-A34E-0583C17293CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{DCBE84E6-CD77-40D6-80A8-E12BFCAD4BAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCBE84E6-CD77-40D6-80A8-E12BFCAD4BAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCBE84E6-CD77-40D6-80A8-E12BFCAD4BAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EDB2D28-5A28-43DB-A34E-0583C17293CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EDB2D28-5A28-43DB-A34E-0583C17293CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EDB2D28-5A28-43DB-A34E-0583C17293CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EDB2D28-5A28-43DB-A34E-0583C17293CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{51C4A0CA-CE2F-4036-B13B-E6DD88DB8880} = {4613D800-0B72-4295-B2BC-8CF60BA2796C}
 		{2E076A83-8C84-40A3-A1EB-C91D6F63D25C} = {2259147E-9B2B-4454-BAAC-482943D43C73}
 		{DCBE84E6-CD77-40D6-80A8-E12BFCAD4BAF} = {2259147E-9B2B-4454-BAAC-482943D43C73}
+		{7EDB2D28-5A28-43DB-A34E-0583C17293CF} = {2259147E-9B2B-4454-BAAC-482943D43C73}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E725826B-D9E5-460D-94BF-5C3134D6EF1B}
