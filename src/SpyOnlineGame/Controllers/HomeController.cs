@@ -1,4 +1,6 @@
 ﻿using System.Web.Mvc;
+using SpyOnlineGame.Data;
+using SpyOnlineGame.Web.Models;
 
 namespace SpyOnlineGame.Controllers
 {
@@ -7,6 +9,15 @@ namespace SpyOnlineGame.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Registration(RegistrationWebModel model)
+        {
+            var player = model.Map();
+            var id = PlayersRepository.Add(player);
+
+            return RedirectToAction("Index", "Wait", new { id });
         }
 
         public ActionResult Rules()
