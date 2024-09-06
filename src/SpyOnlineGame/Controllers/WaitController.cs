@@ -1,7 +1,5 @@
-﻿using System.Linq;
-using System.Web.Mvc;
-using SpyOnlineGame.Data;
-using SpyOnlineGame.Web.Models;
+﻿using System.Web.Mvc;
+using SpyOnlineGame.Web.Hypermedia;
 
 namespace SpyOnlineGame.Controllers
 {
@@ -9,22 +7,14 @@ namespace SpyOnlineGame.Controllers
     {
         public ActionResult Index(int id)
         {
-            var all = PlayersRepository.All.ToArray();
-            var player = PlayersRepository.GetById(id);
-            if (player is null) return new HttpNotFoundResult();
+            var hypermedia = new WaitHypermedia(Request, id);
+            if (hypermedia.IsNotFound) return new HttpNotFoundResult();
 
-            var model = new WaitWebModel
+            if (hypermedia.IsHtmx)
             {
-                Id = id,
-                Current = player,
-                All = all,
-            };
-
-            if (Request.Headers.AllKeys.Contains("hx-request"))
-            {
-                return PartialView("Partial/WaitPartial", model);
+                return PartialView("Partial/WaitPartial", hypermedia.Model());
             }
-            return View(model);
+            return View(hypermedia.Model());
         }
     }
 }

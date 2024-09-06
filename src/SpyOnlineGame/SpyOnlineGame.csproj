@@ -128,6 +128,7 @@
     </Compile>
     <Compile Include="Models\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Web\Hypermedia\WaitHypermedia.cs" />
     <Compile Include="Web\Models\RegistrationWebModel.cs" />
     <Compile Include="Web\Models\WaitWebModel.cs" />
   </ItemGroup>
