@@ -23,5 +23,13 @@ namespace SpyOnlineGame.Data
             
             return player.Id;
         }
+
+        public static void Remove(int id)
+        {
+            var deleted = GetById(id);
+            if (deleted is null) return;
+
+            _players.Remove(deleted);
+        }
     }
 }

@@ -3,12 +3,13 @@
     ViewBag.Title = "Главная";
 }
 
-<div class="my-4 p-5 bg-secondary rounded">
+<div class="my-4 p-5 bg-danger text-light rounded">
     <h1 class="text-center">Игра "Шпион"</h1>
     <p>
         Онлайн версия настольной игры "Шпион"
     </p>
-    <a asp-action="Rules" class="btn btn-dark">Правила игры</a>
+    @Html.ActionLink("Правила игры", "Rules", null, 
+    new { @class ="btn btn-primary mt-2"})
 </div>
 
 <div class="p-2 bg-light border rounded">
