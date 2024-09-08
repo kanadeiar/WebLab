@@ -1,0 +1,21 @@
+﻿<button class="btn btn-warning" 
+        hx-get="@Url.Action("Location", new { ViewBag.Id, ViewBag.IsShow })" 
+        hx-target="#location">
+    @(ViewBag.IsShow == true ? "Скрыть место" : "Узнать место")
+</button>
+
+@if (ViewBag.IsShow)
+{
+    if (ViewBag.Role == RoleCode.Honest)
+    {
+        <span>Загадано место: <strong>@ViewBag.Location</strong>.</span>
+    }
+    else
+    {
+        <span>Вы шпион! Вам неизвестно загаданное место.</span>
+    }
+}
+else
+{
+    <span>Не сообщайте место другому игроку. Возможно он шпион.</span>
+}

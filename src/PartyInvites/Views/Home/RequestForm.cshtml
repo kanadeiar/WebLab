@@ -1,0 +1,49 @@
+﻿@model GuestResponse
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>RsvpForm</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div>
+        <h5 class="bg-primary text-white text-center m-2 p-2">Ответ на приглашение</h5>
+        <form asp-action="RequestForm" method="post" class="m-2">
+
+            <div asp-validation-summary="All"></div>
+
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label">Ваше имя:</label>
+                <input asp-for="Name" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label">Ваш адрес почты:</label>
+                <input asp-for="Email" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Phone" class="form-label">Ваш телефон:</label>
+                <input asp-for="Phone" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="WillAttend" class="form-label">Вы будете присутствовать?</label>
+                <select asp-for="WillAttend" class="form-select">
+                    <option value="">Выберите</option>
+                    <option value="true">Да, прийду</option>
+                    <option value="false">Нет, не смогу</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3">Отправить ответ</button>
+        </form>
+    </div>
+</body>
+</html>

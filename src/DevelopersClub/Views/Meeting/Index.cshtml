@@ -1,0 +1,37 @@
+﻿@model MeetingWebModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Согласование - Клуб программистов</title>
+    <script src="~/lib/htmx/htmx.js"></script>
+</head>
+<body>
+    <h4>Согласование</h4>
+    <p>Согласование темы следующего совещания</p>
+    <p>
+        Ваше имя: <strong>@Model.Current.Name</strong>
+    </p>
+    <div>
+        <p>Интересующая вас тема:</p>
+        <select asp-for="Selected" 
+                asp-items="Model.Available"
+                hx-get hx-action="Select"
+                hx-route-id="@Model.Id"
+                hx-target="#wait">
+            <option value="">Не выбрано</option>
+        </select>
+    </div>
+
+    <div id="wait" hx-get hx-action="Index"
+         hx-route-id="@Model.Id"
+         hx-trigger="every 1s">
+        <partial name="Partial/MeetingPartial" model="Model" />
+    </div>
+</body>
+</html>
+

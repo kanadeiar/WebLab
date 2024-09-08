@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Мирные победили";
+}
+
+<div class="bg-secondary p-2 m-2">
+    <h1>@ViewBag.Title</h1>
+    
+    <p>К сожалению вы проиграли!</p>
+    
+    <p>Проигравший шпион:</p>
+    
+    <p><strong>@ViewBag.Spy</strong></p>
+
+    <p>Выигравшие мирные игроки:</p>
+
+    @foreach (var each in ViewBag.Honests)
+    {
+        <p><strong>@each</strong></p>
+    }
+</div>
+

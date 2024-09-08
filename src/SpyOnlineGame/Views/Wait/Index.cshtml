@@ -1,0 +1,27 @@
+﻿@model WaitWebModel
+@{
+    ViewBag.Title = "Ожидание";
+    Layout = "~/Views/Shared/_GameLayout.cshtml";
+}
+
+@Html.ActionLink("Выход", "Logout", new { Model.Id },
+    new { @class="btn btn-warning my-1" })
+
+<h4>@ViewBag.Title</h4>
+<p>Ожидание окончания регистрации всех участников игры.</p>
+
+<div class="my-1">
+    <label class="form-label">Ваше имя:</label>
+    <input type="text" name="name" class="form-control"
+           hx-get="@Url.Action("SetName", new { Model.Id })"
+           hx-trigger="keyup changed dalay:500ms"
+           value="@Model.Current.Name" />
+</div>
+
+<div class="my-1">
+    <div id="wait"
+         hx-get="@Url.Action("Index", "Wait", new { Model.Id })"
+         hx-trigger="every 1s">
+        @Html.Partial("Partial/WaitPartial", Model)
+    </div>
+</div>

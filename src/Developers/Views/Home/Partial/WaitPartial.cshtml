@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Player>
+
+<div class="form-group">
+    <p class="form-label">Ваша готовность:</p>
+
+    <button class="btn @(ViewBag.IsReady == true ? "btn-success" : "btn-danger")"
+            hx-get="@Url.Action("Ready", new { ViewBag.Id, ViewBag.IsReady })"
+            hx-target="#wait">
+        @(ViewBag.IsReady == true ? "Готов" : "Не готов")
+    </button>
+</div>
+
+<div class="form-group mt-2">
+    <h6 class="bg-success text-white p-2">Готовность всех игроков:</h6>
+    
+    <p>Как только соберутся три готовых к игре участника, игра автоматически сама запуститься.</p>
+
+    <table class="table table-bordered table-striped table-sm">
+        <thead>
+            <tr><th>Id</th><th>Имя</th><th>Готовность</th><th></th></tr>
+        </thead>
+        <tbody>
+            @foreach (var each in Model)
+            {
+                <tr>
+                    <td>@each.Id</td>
+                    <td>@each.Name</td>
+                    <td class="text-white @(each.IsReady ? "bg-success" : "bg-danger")">
+                        @(each.IsReady ? "Готов" : "Еще не готов")
+                    </td>
+                    <td class="text-center">
+                        @if (each.Id != ViewBag.Id)
+                        {
+                            <button class="btn btn-danger btn-sm"
+                                    hx-get="@Url.Action("Kick", new { each.Id })"
+                                    hx-swap="outerHTML">
+                                Выгнать
+                            </button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

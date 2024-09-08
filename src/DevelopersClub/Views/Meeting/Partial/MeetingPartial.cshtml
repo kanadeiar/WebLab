@@ -1,0 +1,20 @@
+﻿@model MeetingWebModel
+
+<p>Все зарегистрированные участники клуба:</p>
+
+<table>
+    <thead>
+        <tr><th>Id</th><th>Имя</th><th>Интересует тема</th></tr>
+    </thead>
+    <tbody>
+    @foreach (var each in Model.All)
+    {
+        <tr>
+            <td>@each.Id</td>
+            <td>@each.Name</td>
+            <td>@each.Subject.Description()</td>
+        </tr>
+    }
+    </tbody>
+</table>
+

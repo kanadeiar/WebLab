@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Игра";
+}
+
+<p class="bg-success text-white text-center m-2 p-2">Ваше имя: <strong>@ViewBag.Name</strong></p>
+
+<div class="m-2">
+    <div id="location">
+        <partial name="Partial/LocationPartial"/>
+    </div>
+    
+    <div id="rules" class="my-3">
+        <partial name="Partial/RulesPartial"/>
+    </div>
+    
+    <div class="my-3">
+        <p>Игрок <strong>@ViewBag.FirstName</strong>, задайте первым вопрос про место любому другому игроку.</p>
+    </div>
+
+
+    <div class="mt-3" id="game">
+        <div id="voting" hx-get="@Url.Action("Voting", new { ViewBag.Id })"
+             hx-trigger="load, every 500ms">
+            
+        </div>
+    </div>
+</div>
+

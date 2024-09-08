@@ -1,0 +1,41 @@
+﻿@model ClubWebModel
+@{
+    ViewBag.Title = "Страница клуба";
+}
+
+<a class="btn btn-warning" 
+   asp-action="Logout" asp-route-id="@Model.Id">Покинуть клуб</a>
+
+<h4>Страница клуба программистов</h4>
+<p>Согласование темы следующего совещания.</p>
+<div class="my-1">
+    <label>Ваше имя:</label>
+    <input type="text" name="name" class="form-control" 
+           hx-get hx-action="ChangeName" 
+           hx-route-id="@Model.Id"
+           hx-trigger="keyup delay:500ms changed"
+           value="@Model.Current.Name"/>
+</div>
+<div class="my-1">
+    <label asp-for="Selected" class="form-label"></label><br/>
+    <select asp-for="Selected" class="form-select"
+            asp-items="Model.Available"
+            hx-get hx-action="Select"
+            hx-route-id="@Model.Id"
+            hx-target="#club">
+        <option value="">Не выбрано</option>
+    </select>
+</div>
+
+<div class="my-2">
+    <label>Ваша готовность прийти на совещание: </label>
+    <partial name="Partial/ReadyPartial" model="Model"/>
+</div>
+
+<div id="club" class="mt-3"
+     hx-get hx-action="Index"
+     hx-route-id="@Model.Id"
+     hx-trigger="every 1s">
+    <partial name="Partial/ClubPartial" model="Model" />
+</div>
+

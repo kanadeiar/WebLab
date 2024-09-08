@@ -1,0 +1,25 @@
+﻿@model RegistrationWebModel
+@{
+    ViewBag.Title = "Главная";
+}
+
+<div class="my-4 p-5 bg-danger text-light rounded">
+    <h1 class="text-center">Игра "Шпион"</h1>
+    <p>
+        Онлайн версия настольной игры "Шпион"
+    </p>
+    @Html.ActionLink("Правила игры", "Rules", null, 
+    new { @class ="btn btn-primary mt-2"})
+</div>
+
+<div class="p-2 bg-light border rounded">
+    @using (Html.BeginForm("Registration", "Home", FormMethod.Post))
+    {
+        <h5>Регистрация нового участника игры</h5>
+        <div>
+            @Html.LabelFor(m => m.Name, new { @class="form-label" })
+            @Html.TextBoxFor(m => m.Name, new { @class="form-control" })
+        </div>
+        <input class="btn btn-dark my-2" type="submit" value="Зарегистрироваться" />
+    }
+</div>

@@ -1,0 +1,25 @@
+﻿@model Player
+@{
+    ViewBag.Title = "Приветствие";
+}
+
+<div class="text-center m-2">
+    <h1>Добро пожаловать в настольную игру на 3-х игроков "Шпион"</h1>
+</div>
+
+<h5 class="bg-success text-white text-center m-2 p-2">Регистрация в игре</h5>
+
+<form method="post" asp-action="Login" class="m-2">
+    <div asp-validation-summary="ModelOnly"></div>
+    
+    <div class="form-group">
+        <label asp-for="Name" class="form-label">Ваше имя:</label>
+        <input asp-for="Name" class="form-control"/>
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    
+    <button type="submit" class="btn btn-primary mt-3">
+        Зарегистрироваться
+    </button>
+</form>
+

@@ -1,0 +1,28 @@
+﻿@model Developer
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Главная - Клуб программистов</title>
+</head>
+<body>
+    <h1>Клуб программистов</h1>
+    <a asp-action="Rules">Правила</a>
+    <p>Добро пожадовать в клуб программистов!</p>
+    <p>Согласование темы следующего заседения.</p>
+
+    <p>Регистртация участника клуба:</p>
+    <form asp-action="Registration" method="post">
+        <div>
+            <label asp-for="Name">Ваше имя:</label>
+            <input asp-for="Name" />
+        </div>
+        <input type="submit" value="Зарегистрироваться" />
+    </form>
+</body>
+</html>
+
