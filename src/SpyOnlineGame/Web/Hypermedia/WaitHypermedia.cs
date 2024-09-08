@@ -40,6 +40,23 @@ namespace SpyOnlineGame.Web.Hypermedia
             PlayersRepository.IsNeedAllUpdate();
         }
 
+        public void SetName(string name)
+        {
+            if (_current is null || _current.Name == name) return;
+            _current.Name = name;
+            PlayersRepository.IsNeedAllUpdate();
+        }
+
+        public void Kick(int playerId)
+        {
+            PlayersRepository.Remove(playerId);
+        }
+
+        public void Logout()
+        {
+            PlayersRepository.Remove(_id);
+        }
+
         public WaitWebModel Model()
         {
             return new WaitWebModel
