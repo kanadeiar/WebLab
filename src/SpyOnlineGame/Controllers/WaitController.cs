@@ -19,5 +19,12 @@ namespace SpyOnlineGame.Controllers
             }
             return View(hypermedia.Model());
         }
+
+        public ActionResult SwitchReady(int id)
+        {
+            var hypermedia = new WaitHypermedia(Request, id);
+            hypermedia.SwitchReady();
+            return Index(id);
+        }
     }
 }

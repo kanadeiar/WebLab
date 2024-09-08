@@ -29,9 +29,15 @@ namespace SpyOnlineGame.Web.Hypermedia
         public bool HasOldData()
         {
             if (_current?.IsNeedUpdate != true) return true;
-
             _current.IsNeedUpdate = false;
             return false;
+        }
+
+        public void SwitchReady()
+        {
+            if (_current is null) return;
+            _current.IsReady = !_current.IsReady;
+            PlayersRepository.IsNeedAllUpdate();
         }
 
         public WaitWebModel Model()
