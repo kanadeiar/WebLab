@@ -18,6 +18,12 @@ namespace SpyOnlineGame.Web.Hypermedia
 
         public bool IsNoContent => IsHtmx && HasOldData();
 
+        public bool IsMayBeStart => PlayersRepository.All.Count() >= 3 && 
+            PlayersRepository.All.All(x => x.IsReady) && !IsGameStarted;
+
+        public bool IsGameStarted =>
+            PlayersRepository.All.Any(p => p.IsPlay);
+
         public WaitHypermedia(HttpRequestBase request, int id)
         {
             _request = request;
@@ -57,6 +63,16 @@ namespace SpyOnlineGame.Web.Hypermedia
             PlayersRepository.Remove(_id);
         }
 
+        public void Start()
+        {
+            if (!IsMayBeStart) return;
+            foreach (var each in PlayersRepository.All)
+            {
+                each.IsPlay = true;
+            }
+            PlayersRepository.IsNeedAllUpdate();
+        }
+
         public WaitWebModel Model()
         {
             return new WaitWebModel
@@ -64,6 +80,7 @@ namespace SpyOnlineGame.Web.Hypermedia
                 Id = _id,
                 Current = _current ?? new Player(),
                 All = PlayersRepository.All,
+                IsMayBeStart = IsMayBeStart,
             };
         }
     }
