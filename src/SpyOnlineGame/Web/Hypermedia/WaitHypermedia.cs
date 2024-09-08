@@ -16,12 +16,22 @@ namespace SpyOnlineGame.Web.Hypermedia
 
         public bool IsNotFound => _current is null;
 
+        public bool IsNoContent => IsHtmx && HasOldData();
+
         public WaitHypermedia(HttpRequestBase request, int id)
         {
             _request = request;
             _id = id;
 
             _current = PlayersRepository.GetById(_id);
+        }
+
+        public bool HasOldData()
+        {
+            if (_current?.IsNeedUpdate != true) return true;
+
+            _current.IsNeedUpdate = false;
+            return false;
         }
 
         public WaitWebModel Model()

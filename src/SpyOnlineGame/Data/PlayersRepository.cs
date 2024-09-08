@@ -20,7 +20,7 @@ namespace SpyOnlineGame.Data
         {
             player.Id = _lastId++;
             _players.Add(player);
-            
+            isNeedAllUpdate();
             return player.Id;
         }
 
@@ -28,8 +28,13 @@ namespace SpyOnlineGame.Data
         {
             var deleted = GetById(id);
             if (deleted is null) return;
-
+            isNeedAllUpdate();
             _players.Remove(deleted);
+        }
+
+        private static void isNeedAllUpdate()
+        {
+            foreach (var each in All) each.IsNeedUpdate = true;
         }
     }
 }

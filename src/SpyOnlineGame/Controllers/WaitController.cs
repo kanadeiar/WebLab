@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Net;
+using System.Web.Mvc;
 using SpyOnlineGame.Web.Hypermedia;
 
 namespace SpyOnlineGame.Controllers
@@ -9,6 +10,8 @@ namespace SpyOnlineGame.Controllers
         {
             var hypermedia = new WaitHypermedia(Request, id);
             if (hypermedia.IsNotFound) return new HttpNotFoundResult();
+            if (hypermedia.IsNoContent) 
+                return new HttpStatusCodeResult(HttpStatusCode.NoContent);
 
             if (hypermedia.IsHtmx)
             {
