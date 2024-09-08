@@ -184,6 +184,7 @@
     <Content Include="Views\Home\Rules.cshtml" />
     <Content Include="Views\Wait\Index.cshtml" />
     <Content Include="Views\Wait\Partial\WaitPartial.cshtml" />
+    <Content Include="Views\Shared\_GameLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

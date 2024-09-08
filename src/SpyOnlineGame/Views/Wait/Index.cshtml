@@ -1,9 +1,10 @@
 ﻿@model WaitWebModel
 @{
     ViewBag.Title = "Ожидание";
+    Layout = "~/Views/Shared/_GameLayout.cshtml";
 }
 
-@Html.ActionLink("Выход", "Logout", new { Model.Id }, 
+@Html.ActionLink("Выход", "Logout", new { Model.Id },
     new { @class="btn btn-warning my-1" })
 
 <h4>@ViewBag.Title</h4>
