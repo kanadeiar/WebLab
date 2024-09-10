@@ -14,6 +14,10 @@ namespace SpyOnlineGame.Controllers
                 if (!hypermedia.IsHtmx) return RedirectToAction("Index", "Home");
                 Response.Headers.Add("hx-redirect", Url.Action("Index", "Home"));
             }
+            if (hypermedia.IsGameStarted)
+            {
+                Response.Headers.Add("hx-redirect", Url.Action("Index", "Game", new { id }));
+            }
             if (hypermedia.IsNoContent) 
                 return new HttpStatusCodeResult(HttpStatusCode.NoContent);
 
@@ -50,6 +54,12 @@ namespace SpyOnlineGame.Controllers
             hypermedia.Logout();
 
             return RedirectToAction("Index", "Home");
+        }
+
+        public void Start(int id)
+        {
+            var hypermedia = new WaitHypermedia(Request, id);
+            hypermedia.Start();
         }
     }
 }

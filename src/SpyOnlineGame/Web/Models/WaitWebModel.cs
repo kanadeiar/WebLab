@@ -9,5 +9,6 @@ namespace SpyOnlineGame.Web.Models
         public int Id { get; set; }
         public Player Current { get; set; }
         public IEnumerable<Player> All { get; set; } = Array.Empty<Player>();
+        public bool IsMayBeStart { get; set; }
     }
 }
