@@ -6,5 +6,7 @@ namespace SpyOnlineGame.Web.Models
     {
         public int Id { get; set; }
         public Player Current { get; set; }
+        public string Location { get; set; }
+        public string FirstName { get; set; }
     }
 }

@@ -6,6 +6,21 @@
 
 <h4>@ViewBag.Title</h4>
 
+<div class="my-1">
+    <span>Загадано место: <strong>@Model.Location</strong>.</span>
+</div>
+
 <p>Ваше имя: <strong>@Model.Current.Name</strong></p>
+
+<div class="my-1">
+    @if (Model.Current.Name == Model.FirstName)
+    {
+        <p>Вы первым задаете вопрос любому другому игроку</p>
+    }
+    else
+    {
+        <p><strong>@Model.FirstName</strong> первым задает вопрос любому другому игроку.</p>
+    }
+</div>
 
 @Html.Partial("Partial/VotingPartial", Model)
