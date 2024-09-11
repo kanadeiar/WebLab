@@ -1,5 +1,4 @@
-﻿@using SpyOnlineGame.Models
-@model GameWebModel
+﻿@model GameWebModel
 @{
     ViewBag.Title = "Игра";
     Layout = "~/Views/Shared/_GameLayout.cshtml";
@@ -11,12 +10,8 @@
     <p>Ваше имя: <strong>@Model.Current.Name</strong></p>
 </div>
 
-<div class="my-1">
-    <p>Загадано место: <strong>@Model.Location</strong>.</p>
-</div>
-
-<div class="my-1">
-    <p>Ваша роль: <strong>@(Model.Current.Role == RoleCode.Spy ? "Шпион" : "Мирный")</strong></p>
+<div id="location" class="my-1">
+    @Html.Partial("Partial/LocationPartial", new LocationWebModel { Id = Model.Id })
 </div>
 
 <div class="my-1">

@@ -1,0 +1,16 @@
+﻿@model LocationWebModel
+
+@if (Model.IsShow)
+{
+    <p>Загадано место: <strong>@(Model.Role == RoleCode.Spy ? "Вы шпион" : Model.Location)</strong>.</p>
+}
+else
+{
+    <p>Держите место в тайне от другого игрока. Возможно он шпион.</p>
+}
+
+<button class="btn btn-dark"
+        hx-get="@Url.Action("Location", new { Model.Id, Model.IsShow })"
+        hx-target="#location">
+    @(Model.IsShow ? "Скрыть" : "Показать")
+</button>

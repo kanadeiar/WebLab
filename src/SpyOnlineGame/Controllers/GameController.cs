@@ -20,5 +20,12 @@ namespace SpyOnlineGame.Controllers
             }
             return View(hypermedia.Model());
         }
+
+        public ActionResult Location(int id, bool isShow)
+        {
+            var hypermedia = new GameHypermedia(Request, id);
+            var model = hypermedia.Location(isShow);
+            return PartialView("Partial/LocationPartial", model);
+        }
     }
 }

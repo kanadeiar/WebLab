@@ -134,6 +134,7 @@
     <Compile Include="Web\Hypermedia\GameHypermedia.cs" />
     <Compile Include="Web\Hypermedia\WaitHypermedia.cs" />
     <Compile Include="Web\Models\GameWebModel.cs" />
+    <Compile Include="Web\Models\LocationWebModel.cs" />
     <Compile Include="Web\Models\RegistrationWebModel.cs" />
     <Compile Include="Web\Models\WaitWebModel.cs" />
   </ItemGroup>
@@ -192,6 +193,7 @@
     <Content Include="Views\Shared\_GameLayout.cshtml" />
     <Content Include="Views\Game\Index.cshtml" />
     <Content Include="Views\Game\Partial\VotingPartial.cshtml" />
+    <Content Include="Views\Game\Partial\LocationPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
