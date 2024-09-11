@@ -6,6 +6,7 @@
         public string Name { get; set; }
         public bool IsReady { get; set; }
         public bool IsPlay { get; set; }
+        public RoleCode Role { get; set; }
         public bool IsNeedUpdate { get; set; }
     }
 }

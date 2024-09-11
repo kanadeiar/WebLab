@@ -1,4 +1,5 @@
-﻿@model GameWebModel
+﻿@using SpyOnlineGame.Models
+@model GameWebModel
 @{
     ViewBag.Title = "Игра";
     Layout = "~/Views/Shared/_GameLayout.cshtml";
@@ -7,19 +8,25 @@
 <h4>@ViewBag.Title</h4>
 
 <div class="my-1">
-    <span>Загадано место: <strong>@Model.Location</strong>.</span>
+    <p>Ваше имя: <strong>@Model.Current.Name</strong></p>
 </div>
 
-<p>Ваше имя: <strong>@Model.Current.Name</strong></p>
+<div class="my-1">
+    <p>Загадано место: <strong>@Model.Location</strong>.</p>
+</div>
+
+<div class="my-1">
+    <p>Ваша роль: <strong>@(Model.Current.Role == RoleCode.Spy ? "Шпион" : "Мирный")</strong></p>
+</div>
 
 <div class="my-1">
     @if (Model.Current.Name == Model.FirstName)
     {
-        <p>Вы первым задаете вопрос любому другому игроку</p>
+        <p>Вы <strong>первым</strong> задаете вопрос любому другому игроку.</p>
     }
     else
     {
-        <p><strong>@Model.FirstName</strong> первым задает вопрос любому другому игроку.</p>
+        <p>Первым вопрос задает <strong>@Model.FirstName</strong>.</p>
     }
 </div>
 

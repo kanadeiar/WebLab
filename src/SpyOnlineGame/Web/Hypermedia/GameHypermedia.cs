@@ -33,10 +33,13 @@ namespace SpyOnlineGame.Web.Hypermedia
 
         public void Init()
         {
+            if (!IsNeedInit) return;
             var all = PlayersRepository.All.ToArray();
             var firstNum = _rand.Next(all.Length);
             _firstName = all[firstNum].Name;
             _location = LocationsSource.GetRandomLocation();
+            var spyNum = _rand.Next(all.Length);
+            all[spyNum].Role = RoleCode.Spy;
         }
 
         public GameWebModel Model()
