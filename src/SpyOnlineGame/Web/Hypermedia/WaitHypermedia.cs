@@ -78,8 +78,8 @@ namespace SpyOnlineGame.Web.Hypermedia
             return new WaitWebModel
             {
                 Id = _id,
-                Current = _current ?? new Player(),
-                All = PlayersRepository.All,
+                Current = _current?.Map() ?? new PlayerWebModel(),
+                All = PlayersRepository.All.Select(p => p.Map()),
                 IsMayBeStart = IsMayBeStart,
             };
         }

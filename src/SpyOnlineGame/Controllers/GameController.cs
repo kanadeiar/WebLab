@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Net;
+using System.Web.Mvc;
 using SpyOnlineGame.Web.Hypermedia;
 
 namespace SpyOnlineGame.Controllers
@@ -13,6 +14,8 @@ namespace SpyOnlineGame.Controllers
                 return RedirectToAction("Index", "Home");
             }
             if (hypermedia.IsNeedInit) hypermedia.Init();
+            if (hypermedia.IsNoContent)
+                return new HttpStatusCodeResult(HttpStatusCode.NoContent);
 
             if (hypermedia.IsHtmx)
             {
@@ -26,6 +29,13 @@ namespace SpyOnlineGame.Controllers
             var hypermedia = new GameHypermedia(Request, id);
             var model = hypermedia.Location(isShow);
             return PartialView("Partial/LocationPartial", model);
+        }
+
+        public ActionResult Select(int id, int votePlayerId)
+        {
+            var hypermedia = new GameHypermedia(Request, id);
+            hypermedia.Select(votePlayerId);
+            return Index(id);
         }
     }
 }

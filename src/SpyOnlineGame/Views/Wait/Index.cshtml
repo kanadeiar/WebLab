@@ -18,10 +18,8 @@
            value="@Model.Current.Name" />
 </div>
 
-<div class="my-1">
-    <div id="wait"
-         hx-get="@Url.Action("Index", "Wait", new { Model.Id })"
-         hx-trigger="every 1s">
-        @Html.Partial("Partial/WaitPartial", Model)
-    </div>
+<div id="wait" class="my-1"
+     hx-get="@Url.Action("Index", "Wait", new { Model.Id })"
+     hx-trigger="every 1s">
+    @Html.Partial("Partial/WaitPartial", Model)
 </div>

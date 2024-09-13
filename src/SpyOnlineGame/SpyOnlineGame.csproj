@@ -135,6 +135,7 @@
     <Compile Include="Web\Hypermedia\WaitHypermedia.cs" />
     <Compile Include="Web\Models\GameWebModel.cs" />
     <Compile Include="Web\Models\LocationWebModel.cs" />
+    <Compile Include="Web\Models\PlayerWebModel.cs" />
     <Compile Include="Web\Models\RegistrationWebModel.cs" />
     <Compile Include="Web\Models\WaitWebModel.cs" />
   </ItemGroup>
