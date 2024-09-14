@@ -12,6 +12,7 @@ namespace SpyOnlineGame.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
+            if (hypermedia.IsNeedInit) hypermedia.Init();
 
             if (hypermedia.IsHtmx)
             {
