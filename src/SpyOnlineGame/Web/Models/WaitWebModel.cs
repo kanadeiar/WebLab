@@ -14,8 +14,8 @@ namespace SpyOnlineGame.Web.Models
             return new WaitWebModel
             {
                 Id = id,
-                Current = current?.Map() ?? PlayerWebModel.Default,
-                All = PlayersRepository.All.Select(p => p.Map()),
+                Current = PlayerWebModel.Create(current) ?? PlayerWebModel.Default,
+                All = PlayersRepository.All.Select(PlayerWebModel.Create),
                 IsMayBeStart = isMayBeStart,
             };
         }
