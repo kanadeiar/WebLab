@@ -42,15 +42,7 @@ namespace SpyOnlineGame.Web.Hypermedia
             all[spyNum].Role = RoleCode.Spy;
         }
 
-        public GameWebModel Model()
-        {
-            return new GameWebModel
-            {
-                Id = _id,
-                Current = _current ?? new Player(),
-                Location = _location,
-                FirstName = _firstName,
-            };
-        }
+        public GameWebModel Model() =>
+            GameWebModel.Create(_id, _current, _location, _firstName);
     }
 }
