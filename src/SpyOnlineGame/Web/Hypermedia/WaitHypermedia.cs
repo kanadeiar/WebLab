@@ -73,15 +73,7 @@ namespace SpyOnlineGame.Web.Hypermedia
             PlayersRepository.IsNeedAllUpdate();
         }
 
-        public WaitWebModel Model()
-        {
-            return new WaitWebModel
-            {
-                Id = _id,
-                Current = _current ?? new Player(),
-                All = PlayersRepository.All,
-                IsMayBeStart = IsMayBeStart,
-            };
-        }
+        public WaitWebModel Model() => 
+            WaitWebModel.Create(_id, _current, IsMayBeStart);
     }
 }
