@@ -20,6 +20,8 @@ namespace SpyOnlineGame.Web.Hypermedia
 
         public bool IsNotFound => _current is null;
 
+        public bool IsNoContent => IsHtmx && HasOldData();
+
         public bool IsNeedInit => 
             string.IsNullOrEmpty(_location) && PlayersRepository.All.Any(p => p.IsPlay);
 
@@ -31,6 +33,13 @@ namespace SpyOnlineGame.Web.Hypermedia
             _current = PlayersRepository.GetById(_id);
         }
 
+        public bool HasOldData()
+        {
+            if (_current?.IsNeedUpdate != true) return true;
+            _current.IsNeedUpdate = false;
+            return false;
+        }
+
         public void Init()
         {
             if (!IsNeedInit) return;
@@ -40,6 +49,12 @@ namespace SpyOnlineGame.Web.Hypermedia
             _location = LocationsSource.GetRandomLocation();
             var spyNum = _rand.Next(all.Length);
             all[spyNum].Role = RoleCode.Spy;
+        }
+
+        public void Select(int votePlayerId)
+        {
+            _current.VotePlayerId = votePlayerId;
+            PlayersRepository.IsNeedAllUpdate();
         }
 
         public LocationWebModel Location(bool isShow) =>

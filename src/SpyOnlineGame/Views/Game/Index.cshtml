@@ -26,4 +26,8 @@
     }
 </div>
 
-@Html.Partial("Partial/VotingPartial", Model)
+<div id="voting" class="my-1"
+     hx-get="@Url.Action("Index", "Game", new { Model.Id })"
+     hx-trigger="every 1s">
+    @Html.Partial("Partial/VotingPartial", Model)
+</div>

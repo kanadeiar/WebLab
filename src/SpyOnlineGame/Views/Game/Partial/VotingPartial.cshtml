@@ -3,34 +3,44 @@
 <h6>Открытое голосование за определение шпиона</h6>
 <table class="table table-striped table-bordered">
     <thead>
-        <tr>
-            <th>Игрок:</th>
-            @foreach (var each in Model.All)
-            {
-                <th>@each.Name</th>
-            }
-        </tr>
+    <tr>
+        <th>Игрок:</th>
+        @foreach (var each in Model.All)
+        {
+            <th>@each.Name</th>
+        }
+    </tr>
     </thead>
     <tbody>
-        <tr>
-            <th scope="row" class="align-middle">Голос:</th>
-            @foreach (var each in Model.All)
+    <tr>
+        <th scope="row" class="align-middle">Голос:</th>
+        @foreach (var each in Model.All)
+        {
+            if (each.Id == Model.Id)
             {
-                if (each.Id == Model.Id)
-                {
-                    <td>
-                        @Html.DropDownList("VotePlayerId",
-                        new[] { new SelectListItem { Value = "0", Text = "Сомневается" } }, null, new
+                <td>
+                    @Html.DropDownList("VotePlayerId", Model.PlayersVariants, 
+                        null, new
                         {
                             @class = "form-select",
+                            hx_get = Url.Action("Select", "Game", 
+                                new { Model.Id }),
+                            hx_target = "#voting",
                         })
-                    </td>
-                }
-                else
-                {
-                    <td class="align-middle">@each.VotePlayerName</td>
-                }
+                </td>
             }
-        </tr>
+            else
+            {
+                <td class="align-middle">@each.VotePlayerName</td>
+            }
+        }
+    </tr>
     </tbody>
 </table>
+
+@if (Model.IsMayBeVote)
+{
+    <button class="btn btn-primary mt-2">
+        Подтвердить голосование
+    </button>
+}
