@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Web;
+using SpyOnlineGame.Common;
 using SpyOnlineGame.Data;
 using SpyOnlineGame.Models;
 using SpyOnlineGame.Web.Models;
@@ -20,6 +21,8 @@ namespace SpyOnlineGame.Web.Hypermedia
 
         public bool IsNotFound => _current is null;
 
+        public bool IsNoContent => IsHtmx && HasOldData();
+
         public bool IsNeedInit => 
             string.IsNullOrEmpty(_location) && PlayersRepository.All.Any(p => p.IsPlay);
 
@@ -29,6 +32,13 @@ namespace SpyOnlineGame.Web.Hypermedia
             _id = id;
 
             _current = PlayersRepository.GetById(_id);
+        }
+
+        public bool HasOldData()
+        {
+            if (_current?.IsNeedUpdate != true) return true;
+            _current.IsNeedUpdate = false;
+            return false;
         }
 
         public void Init()
@@ -42,7 +52,23 @@ namespace SpyOnlineGame.Web.Hypermedia
             all[spyNum].Role = RoleCode.Spy;
         }
 
+        public void Select(int votePlayerId)
+        {
+            _current.VotePlayerId = votePlayerId;
+            PlayersRepository.IsNeedAllUpdate();
+        }
+
+        public void Confirm()
+        {
+            if (!GameHelpers.CheckMayBeVote(_id)) return;
+            var votePlayerId = VotedHelpers.GetVotedPlayerId();
+            VotedHelpers.VotedOfPlayer(votePlayerId);
+        }
+
+        public LocationWebModel Location(bool isShow) =>
+            LocationWebModel.Create(_id, _current, _location, !isShow);
+
         public GameWebModel Model() =>
-            GameWebModel.Create(_id, _current, _location, _firstName);
+            GameWebModel.Create(_id, _current, _firstName);
     }
 }
