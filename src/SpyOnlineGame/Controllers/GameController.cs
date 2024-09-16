@@ -11,7 +11,8 @@ namespace SpyOnlineGame.Controllers
             var hypermedia = new GameHypermedia(Request, id);
             if (hypermedia.IsNotFound)
             {
-                return RedirectToAction("Index", "Home");
+                if (!hypermedia.IsHtmx) return RedirectToAction("Index", "Home");
+                Response.Headers.Add("hx-redirect", Url.Action("Index", "Home"));
             }
             if (hypermedia.IsNeedInit) hypermedia.Init();
             if (hypermedia.IsNoContent)
@@ -36,6 +37,12 @@ namespace SpyOnlineGame.Controllers
             var hypermedia = new GameHypermedia(Request, id);
             hypermedia.Select(votePlayerId);
             return Index(id);
+        }
+
+        public void Confirm(int id)
+        {
+            var hypermedia = new GameHypermedia(Request, id);
+            hypermedia.Confirm();
         }
     }
 }

@@ -1,46 +1,81 @@
-﻿@model GameWebModel
+﻿@using SpyOnlineGame.Models
+@model GameWebModel
 
-<h6>Открытое голосование за определение шпиона</h6>
-<table class="table table-striped table-bordered">
-    <thead>
-    <tr>
-        <th>Игрок:</th>
-        @foreach (var each in Model.All)
-        {
-            <th>@each.Name</th>
-        }
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <th scope="row" class="align-middle">Голос:</th>
-        @foreach (var each in Model.All)
-        {
-            if (each.Id == Model.Id)
-            {
-                <td>
-                    @Html.DropDownList("VotePlayerId", Model.PlayersVariants, 
-                        null, new
-                        {
-                            @class = "form-select",
-                            hx_get = Url.Action("Select", "Game", 
-                                new { Model.Id }),
-                            hx_target = "#voting",
-                        })
-                </td>
-            }
-            else
-            {
-                <td class="align-middle">@each.VotePlayerName</td>
-            }
-        }
-    </tr>
-    </tbody>
-</table>
-
-@if (Model.IsMayBeVote)
+@if (Model.Current.IsVoted)
 {
-    <button class="btn btn-primary mt-2">
-        Подтвердить голосование
+    <h6 class="bg-dark text-light p-2">
+        Вы были убиты и теперь можете
+        только наблюдать
+    </h6>
+}
+else
+{
+    <h6>Открытое голосование за определение шпиона</h6>
+}
+<div class="table-responsive">
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Игрок:</th>
+                @foreach (var each in Model.All)
+                {
+                    if (each.IsVoted)
+                    {
+                        <th class="bg-dark text-light">@each.Name</th>
+                    }
+                    else
+                    {
+                        <th>@each.Name</th>
+                    }
+                }
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row" class="align-middle">Голос:</th>
+                @foreach (var each in Model.All)
+                {
+                    if (each.IsVoted)
+                    {
+                        if (each.Role == RoleCode.Spy)
+                        {
+                            <td class="bg-danger text-light align-middle">Шпион</td>
+                        }
+                        else
+                        {
+                            <td class="bg-success text-light align-middle">Мирный</td>
+                        }
+                    }
+                    else
+                    {
+                        if (each.Id == Model.Id)
+                        {
+                            <td>
+                                @Html.DropDownList("VotePlayerId", Model.PlayersVariants,
+                                    null, new
+                                    {
+                                        @class = "form-select",
+                                        hx_get = Url.Action("Select", "Game",
+                                            new { Model.Id }),
+                                        hx_target = "#voting",
+                                    })
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="align-middle">@each.VotePlayerName</td>
+                        }
+                    }
+                }
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+@if (Model.IsMayBeVote && !Model.Current.IsVoted)
+{
+    <button class="btn btn-primary mt-2"
+            hx-get="@Url.Action("Confirm", new { Model.Id })">
+        Уничтожить шпиона
     </button>
 }

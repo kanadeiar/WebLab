@@ -14,7 +14,7 @@ namespace SpyOnlineGame.Common
         {
             var othersLivesPlayer = CreateAllPlayers().Where(p => p.Id != id);
             var variants = new List<SelectListItem> { new SelectListItem
-                { Value = "0", Text = "Сомневается" } };
+                { Value = "0", Text = "Сомневаюсь" } };
             variants.AddRange(othersLivesPlayer.Select(p =>
                 new SelectListItem
                 {
@@ -30,14 +30,14 @@ namespace SpyOnlineGame.Common
             return MaxVoteCount(id) >= CountOfLivesPlayers() - 1;
         }
 
-        private static int MaxVoteCount(int id)
+        public static int MaxVoteCount(int id)
         {
             var grouped = GroupedByVotePlayers(id);
             if (!grouped.Any()) return 0;
             return grouped.Select(p => p.Count()).Max();
         }
 
-        private static IGrouping<int, PlayerWebModel>[] GroupedByVotePlayers(int id)
+        public static IGrouping<int, PlayerWebModel>[] GroupedByVotePlayers(int id)
         {
             var actualPlayers = CreateAllPlayers().Where(p => p.VotePlayerId != 0
                                                               && p.VotePlayerId != id);
@@ -45,7 +45,7 @@ namespace SpyOnlineGame.Common
             return result;
         }
 
-        private static int CountOfLivesPlayers()
+        public static int CountOfLivesPlayers()
         {
             return CreateAllPlayers().Count(p => !p.IsVoted);
         }

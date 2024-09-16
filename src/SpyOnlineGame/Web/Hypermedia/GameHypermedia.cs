@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Web;
+using SpyOnlineGame.Common;
 using SpyOnlineGame.Data;
 using SpyOnlineGame.Models;
 using SpyOnlineGame.Web.Models;
@@ -55,6 +56,13 @@ namespace SpyOnlineGame.Web.Hypermedia
         {
             _current.VotePlayerId = votePlayerId;
             PlayersRepository.IsNeedAllUpdate();
+        }
+
+        public void Confirm()
+        {
+            if (!GameHelpers.CheckMayBeVote(_id)) return;
+            var votePlayerId = VotedHelpers.GetVotedPlayerId();
+            VotedHelpers.VotedOfPlayer(votePlayerId);
         }
 
         public LocationWebModel Location(bool isShow) =>
