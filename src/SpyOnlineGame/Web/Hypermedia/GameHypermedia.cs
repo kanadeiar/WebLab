@@ -12,6 +12,7 @@ namespace SpyOnlineGame.Web.Hypermedia
     {
         private static string _location;
         private static string _firstName;
+        private static bool _isEndGame;
         private readonly Random _rand = new Random();
         private readonly HttpRequestBase _request;
         private readonly int _id;
@@ -25,6 +26,8 @@ namespace SpyOnlineGame.Web.Hypermedia
 
         public bool IsNeedInit => 
             string.IsNullOrEmpty(_location) && PlayersRepository.All.Any(p => p.IsPlay);
+
+        public bool IsEndGame => _isEndGame;
 
         public GameHypermedia(HttpRequestBase request, int id)
         {
@@ -63,6 +66,10 @@ namespace SpyOnlineGame.Web.Hypermedia
             if (!GameHelpers.CheckMayBeVote(_id)) return;
             var votePlayerId = VotedHelpers.GetVotedPlayerId();
             VotedHelpers.VotedOfPlayer(votePlayerId);
+            if (RulesHelpers.CheckEndGame())
+            {
+                _isEndGame = true;
+            }
         }
 
         public LocationWebModel Location(bool isShow) =>
