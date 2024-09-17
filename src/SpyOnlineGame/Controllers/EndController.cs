@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using SpyOnlineGame.Web.Services;
 
 namespace SpyOnlineGame.Controllers
 {
@@ -6,7 +7,9 @@ namespace SpyOnlineGame.Controllers
     {
         public ActionResult Index(int id)
         {
-            return View();
+            var webService = new EndWebService(id);
+
+            return View(webService.Model());
         }
     }
 }

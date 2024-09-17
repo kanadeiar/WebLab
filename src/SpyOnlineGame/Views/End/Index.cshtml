@@ -1,7 +1,42 @@
-﻿
+﻿@model EndWebModel
 @{
-    ViewBag.Title = "Конец игры";
+    ViewBag.Title = Model.IsCurrentWin ? "Победа" : "Проигрыш";
 }
 
-<h2>Конец игры</h2>
+<div class="my-4 p-5 text-light rounded @(Model.IsCurrentWin ? Model.IsWinOfHonestPlayers ? "bg-success" : "bg-danger" : "bg-secondary")">
+    <h1 class="text-center">@ViewBag.Title</h1>
+    
+    <p>Ваше имя: <strong>@Model.Current.Name</strong></p>
+
+    @if (Model.IsWinOfHonestPlayers)
+    {
+        <p>Победа мирных.</p>
+    }
+    else
+    {
+        <p>Победа шпиона.</p>
+    }
+    @if (Model.IsCurrentWin)
+    {
+        <p>Вы выиграли в этой игре!</p>
+    }
+    else
+    {
+        <p>К сожалению, вы проиграли.</p>
+    }
+
+    <h5 class="mt-2">Мирные игроки:</h5>
+    <ol class="list-group list-group-numbered">
+        @foreach (var each in Model.HonestPlayers)
+        {
+            <li class="list-group-item">@each.Name</li>
+        }
+    </ol>
+    
+    <h5 class="mt-2">Шпион:</h5>
+    <ol class="list-group list-group-numbered">
+        <li class="list-group-item">@Model.SpyPlayer.Name</li>
+    </ol>
+</div>
+
 
