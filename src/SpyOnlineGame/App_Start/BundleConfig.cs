@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace SpyOnlineGame
 {
@@ -22,8 +21,8 @@ namespace SpyOnlineGame
             bundles.Add(new Bundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/htmx").Include(
-                "~/lib/htmx/htmx.js"));
+            bundles.Add(new Bundle("~/bundles/htmx").Include(
+                "~/Scripts/htmx.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
