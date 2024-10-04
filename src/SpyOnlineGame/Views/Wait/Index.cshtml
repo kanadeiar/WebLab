@@ -14,7 +14,7 @@
     <label class="form-label">Ваше имя:</label>
     <input type="text" name="name" class="form-control"
            hx-get="@Url.Action("SetName", new { Model.Id })"
-           hx-trigger="keyup changed dalay:500ms"
+           hx-trigger="change, keyup delay:500ms changed"
            value="@Model.Current.Name" />
 </div>
 

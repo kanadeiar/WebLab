@@ -1,6 +1,7 @@
-﻿using System.Web.Optimization;
+﻿using System.Web;
+using System.Web.Optimization;
 
-namespace SpyOnlineGame
+namespace HelloHypermedia
 {
     public class BundleConfig
     {
@@ -20,9 +21,6 @@ namespace SpyOnlineGame
 
             bundles.Add(new Bundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
-
-            bundles.Add(new Bundle("~/bundles/htmx").Include(
-                "~/Scripts/htmx.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
