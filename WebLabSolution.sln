@@ -27,8 +27,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpyOnlineGame", "src\SpyOnl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloHypermedia", "src\HelloHypermedia\HelloHypermedia.csproj", "{2B401B8F-18A7-4068-AD31-18D5DB01277F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "src\WebApplication1\WebApplication1.csproj", "{0999C8BC-5A24-45D5-A09A-35A476D20AE3}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,10 +73,6 @@ Global
 		{2B401B8F-18A7-4068-AD31-18D5DB01277F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B401B8F-18A7-4068-AD31-18D5DB01277F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B401B8F-18A7-4068-AD31-18D5DB01277F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0999C8BC-5A24-45D5-A09A-35A476D20AE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0999C8BC-5A24-45D5-A09A-35A476D20AE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0999C8BC-5A24-45D5-A09A-35A476D20AE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0999C8BC-5A24-45D5-A09A-35A476D20AE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,7 +88,6 @@ Global
 		{DCBE84E6-CD77-40D6-80A8-E12BFCAD4BAF} = {2259147E-9B2B-4454-BAAC-482943D43C73}
 		{7EDB2D28-5A28-43DB-A34E-0583C17293CF} = {2259147E-9B2B-4454-BAAC-482943D43C73}
 		{2B401B8F-18A7-4068-AD31-18D5DB01277F} = {2259147E-9B2B-4454-BAAC-482943D43C73}
-		{0999C8BC-5A24-45D5-A09A-35A476D20AE3} = {2259147E-9B2B-4454-BAAC-482943D43C73}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E725826B-D9E5-460D-94BF-5C3134D6EF1B}
