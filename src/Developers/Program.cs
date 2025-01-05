@@ -1,4 +1,11 @@
+using Developers.Services;
+using Lib.AspNetCore.ServerSentEvents;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddServerSentEvents();
+builder.Services.AddServerSentEvents<INotificationsServerSentEventsService, NotificationsServerSentEventsService>();
+builder.Services.AddSingleton<IHostedService, HeartbeatService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -19,6 +26,14 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapServerSentEvents("/see-heartbeat");
+
+    endpoints.MapServerSentEvents<NotificationsServerSentEventsService>("/sse-notifications");
+    //endpoints.MapControllerRoute("default", "{controller=Notifications}/{action=sse-notifications-receiver}");
+});
 
 app.MapControllerRoute(
     name: "default",

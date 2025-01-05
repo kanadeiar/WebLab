@@ -3,6 +3,31 @@
     ViewBag.Title = "Приветствие";
 }
 
+<div>
+    <p>SSE-experiment</p>
+    
+    <div class="d-flex justify-content-center">
+        <div hx-ext="sse" sse-connect="/see-heartbeat" sse-swap="message" class="card mb-3 text-center">
+            Сообщение от сторожа
+        </div>
+    </div>
+
+</div>
+
+<div>
+    <p>SSE-messages</p>
+
+    <div class="d-flex justify-content-center">
+        <div hx-ext="sse" sse-connect="/sse-notifications" sse-swap="message" class="card mb-3 text-center">
+            Уведомления
+        </div>
+    </div>
+    
+    <button hx-get hx-action="Send" hx-swap="none">
+        Послать
+    </button>
+</div>
+
 <div class="text-center m-2">
     <h1>Добро пожаловать в настольную игру на 3-х игроков "Шпион"</h1>
 </div>

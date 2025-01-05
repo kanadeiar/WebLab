@@ -1,13 +1,31 @@
 using Developers.Data;
 using Developers.Models;
+using Developers.Services;
 using Htmx;
+using Lib.AspNetCore.ServerSentEvents;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Developers.Controllers;
 
 public class HomeController : Controller
 {
+    private readonly INotificationsServerSentEventsService _service;
     private static bool isGame;
+
+    public HomeController(INotificationsServerSentEventsService service)
+    {
+        _service = service;
+    }
+
+    private static int _counter = 0;
+    public void Send()
+    {
+        _counter++;
+        _service.SendEventAsync(new ServerSentEvent
+        {
+            Data = new List<string>{ "counter: " + _counter },
+        });
+    }
 
     public IActionResult Index()
     {
